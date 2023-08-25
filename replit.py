@@ -548,7 +548,7 @@ def like():
                 for value_aria_label in aria_label_values:
                         print(value_aria_label)
                 like_old_count = value_aria_label.replace('like this video along with', '').replace('other people', '').strip().replace('likes', '').strip().replace('معجبين', '').strip().replace('أبدى إعجابه بهذا الفيديو إضافة إلى', '').strip().replace('شخصًا آخر', '').strip().replace('معجبًا', '').strip().replace('أشخاص آخرين', '').strip()#.split(',')
-                #time.sleep(2)
+                time.sleep(2)
                 driver.find_element(By.ID, 'segmented-like-button').click()
                 time.sleep(2)
                 driver.refresh()
@@ -568,10 +568,10 @@ def like():
                     print('like_old_count:',like_old_count)
                     print('==')
                     print('like_new_count:',like_new_count)
-                    #time.sleep(2)
+                    time.sleep(2)
                     driver.close()
                     driver.switch_to.window(driver.window_handles[0])
-                    #time.sleep(5)
+                    time.sleep(5)
                     driver.get("https://www.like4like.org/earn-credits.php?feature=youtube")
                     driver.execute_script("window.scrollTo(0, document.body.scrollHeight/2);")
                 elif like_old_count < like_new_count  :
@@ -595,9 +595,9 @@ def like():
                     print('like_old_count:',like_old_count)
                     print('>')
                     print('like_new_count:',like_new_count)
-                    #time.sleep(2)
+                    time.sleep(2)
                     driver.find_element(By.ID, 'segmented-like-button').click()
-                    #time.sleep(2)
+                    time.sleep(2)
                     driver.close()
                     driver.switch_to.window(driver.window_handles[0])
                     time.sleep(5)
@@ -607,7 +607,7 @@ def like():
                     print('errro')
                     driver.close()
                     driver.switch_to.window(driver.window_handles[0])
-                    #time.sleep(5)
+                    time.sleep(5)
                     driver.get("https://www.like4like.org/earn-credits.php?feature=youtube")
                     driver.execute_script("window.scrollTo(0, document.body.scrollHeight/2);")
                 email_to_find = email
@@ -643,7 +643,7 @@ def like():
 
 
 like()
-#Subscribe()
+Subscribe()
 
 try:
     driver.quit()

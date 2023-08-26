@@ -512,7 +512,7 @@ def like():
     global con_like
     my_list_like = []
     driver.get("https://www.like4like.org/earn-credits.php?feature=youtube")
-    driver.execute_script("window.scrollTo(0, document.body.scrollHeight/2);")
+    #driver.execute_script("window.scrollTo(0, document.body.scrollHeight/2);")
 
     con_like = 0
     con_like_2 = 0
@@ -531,6 +531,7 @@ def like():
                 break
             time.sleep(5)
             element_control_click = driver.find_element(By.CSS_SELECTOR, "a[class^='cursor earn_pages_button profile_view_img']")
+            driver.execute_script("arguments[0].click();", element_control_click)
             onclick_value = element_control_click.get_attribute("onclick").split('https://www.youtube.com/watch?v=')[-1].split("'")[0]
             value_to_search = onclick_value
 
@@ -573,7 +574,7 @@ def like():
                     driver.switch_to.window(driver.window_handles[0])
                     time.sleep(5)
                     driver.get("https://www.like4like.org/earn-credits.php?feature=youtube")
-                    driver.execute_script("window.scrollTo(0, document.body.scrollHeight/2);")
+                    #driver.execute_script("window.scrollTo(0, document.body.scrollHeight/2);")
                 elif like_old_count < like_new_count  :
                     print('_______________________________________________________________')
                     print('like_old_count:',like_old_count)
@@ -602,14 +603,14 @@ def like():
                     driver.switch_to.window(driver.window_handles[0])
                     time.sleep(5)
                     driver.get("https://www.like4like.org/earn-credits.php?feature=youtube")
-                    driver.execute_script("window.scrollTo(0, document.body.scrollHeight/2);")
+                    #driver.execute_script("window.scrollTo(0, document.body.scrollHeight/2);")
                 else:
                     print('errro')
                     driver.close()
                     driver.switch_to.window(driver.window_handles[0])
                     time.sleep(5)
                     driver.get("https://www.like4like.org/earn-credits.php?feature=youtube")
-                    driver.execute_script("window.scrollTo(0, document.body.scrollHeight/2);")
+                    #driver.execute_script("window.scrollTo(0, document.body.scrollHeight/2);")
                 email_to_find = email
                 user_data = collection.find_one({"email": email_to_find})
                 
@@ -626,18 +627,18 @@ def like():
                         )
         except NoSuchWindowException:
             print('like: NoSuchWindowException_stop')
-            driver.execute_script("window.scrollTo(0, document.body.scrollHeight/2);")
+            #driver.execute_script("window.scrollTo(0, document.body.scrollHeight/2);")
 
             no_Window_driver()
             print('like: NoSuchWindowException_open')
         except NoSuchElementException:
             print('NoSuchElementException_like')
-            driver.execute_script("window.scrollTo(0, document.body.scrollHeight/2);")
+            #driver.execute_script("window.scrollTo(0, document.body.scrollHeight/2);")
 
             like_erro()
         except Exception as s:
             print('Subscribe_erroo:   ',s)
-            driver.execute_script("window.scrollTo(0, document.body.scrollHeight/2);")
+            #driver.execute_script("window.scrollTo(0, document.body.scrollHeight/2);")
             like_erro()
     
 

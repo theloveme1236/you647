@@ -699,7 +699,7 @@ def pinterest():
             print(a)
             failed_success_minutes()
             check_driver_open()
-            no_Window_driver()
+            #no_Window_driver()
 def pinterest_save():
     global driver
     driver.get("https://www.like4like.org/earn-credits.php?feature=pinterestrep")
@@ -723,9 +723,9 @@ def pinterest_save():
             driver.get("https://www.like4like.org/earn-credits.php?feature=pinterestrep")
             failed_success_minutes()
             check_driver_open()
-            no_Window_driver()
+            #no_Window_driver()
 pinterest()
-pinterest_save()
+#pinterest_save()
 try:
     driver.close()
 except:

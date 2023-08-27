@@ -697,8 +697,8 @@ def pinterest():
             driver.find_element(By.CSS_SELECTOR, '[alt="Click On The Button To Confirm Interaction!"]').click()
         except Exception as a:
             print(a)
-            failed_success_minutes()
             check_driver_open()
+            failed_success_minutes()
             #no_Window_driver()
 def pinterest_save():
     global driver

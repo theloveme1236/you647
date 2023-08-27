@@ -43,6 +43,7 @@ Subscribe_erro_stop_time= 'start'
 like_erro_stop_time = 'start'
 stop_def_Subscribe = 'start'
 stop_def_like = 'start'
+stop_def_pinterest = 'start'
 def cookis_like():
     global driver
     for cookie in cookies:
@@ -224,49 +225,7 @@ driver.find_element(By.ID, 'password').send_keys(password)
 time.sleep(1)
 driver.find_element(By.CSS_SELECTOR, '[data-test-id="registerFormSubmitButton"]').click()
 time.sleep(5)
-def pinterest():
-    global driver
-    driver.get("https://www.like4like.org/user/earn-pinterest-follow.php")
 
-    for s in range(10):
-        try:
-            
-            driver.maximize_window()
-            driver.implicitly_wait(15)
-            driver.find_element(By.CSS_SELECTOR, "a[class^='cursor earn_pages_button profile_view_img']").click()
-            driver.switch_to.window(driver.window_handles[1])
-            time.sleep(2)
-            driver.find_element(By.CSS_SELECTOR, '[data-test-id="user-follow-button"]').click()
-            time.sleep(5)
-            driver.close()
-            driver.switch_to.window(driver.window_handles[0])
-            time.sleep(2)
-            driver.find_element(By.CSS_SELECTOR, '[alt="Click On The Button To Confirm Interaction!"]').click()
-        except Exception as a:
-            print(a)
-def pinterest_save():
-    global driver
-    driver.get("https://www.like4like.org/earn-credits.php?feature=pinterestrep")
-
-    for s in range(5):
-        try:
-            
-            driver.maximize_window()
-            driver.implicitly_wait(15)
-            driver.find_element(By.CSS_SELECTOR, "a[class^='cursor earn_pages_button profile_view_img']").click()
-            driver.switch_to.window(driver.window_handles[1])
-            time.sleep(2)
-            driver.find_element(By.CSS_SELECTOR, '[data-test-id="quick-save-button"]').click()
-            time.sleep(5)
-            driver.close()
-            driver.switch_to.window(driver.window_handles[0])
-            time.sleep(2)
-            driver.find_element(By.CSS_SELECTOR, '[alt="Click On The Button To Confirm Interaction!"]').click()
-        except Exception as a:
-            print(a)
-            driver.get("https://www.like4like.org/earn-credits.php?feature=pinterestrep")
-pinterest()
-pinterest_save()
 
 '''                
     if cookies_totel_1=='youtube':
@@ -347,6 +306,7 @@ def failed_success_minutes():
     global stop_def_Subscribe
     global stop_def_like
     global stop_def_like_con
+    global stop_def_pinterest
     
     try:
         erro_minutes=driver.find_element(By.ID, 'error-text').text
@@ -397,6 +357,10 @@ def failed_success_minutes():
                     stop_def_like  = 'stop'
                 stop_def_like_con +=1
                 print('stop_def_like_con',stop_def_like_con)
+            if current_url=='https://www.like4like.org/user/earn-pinterest-follow.php"':
+                print('pinteresterro_stop_time')            
+                stop_def_pinterest  = 'stop'
+                print('stop_def_pinterest_con',stop_def_pinterest)
         #driver.quit()
     except NoSuchWindowException:
         print('failed_success_minutes')
@@ -710,4 +674,59 @@ def like():
             #driver.execute_script("window.scrollTo(0, document.body.scrollHeight/2);")
             like_erro()
     
+def pinterest():
+    global driver
+    driver.get("https://www.like4like.org/user/earn-pinterest-follow.php")
 
+    for s in range(15):
+        try:
+            
+            if stop_def_pinterest == 'stop':
+                print('stop_def_pinterest')
+                break
+            driver.maximize_window()
+            driver.implicitly_wait(15)
+            driver.find_element(By.CSS_SELECTOR, "a[class^='cursor earn_pages_button profile_view_img']").click()
+            driver.switch_to.window(driver.window_handles[1])
+            time.sleep(2)
+            driver.find_element(By.CSS_SELECTOR, '[data-test-id="user-follow-button"]').click()
+            time.sleep(5)
+            driver.close()
+            driver.switch_to.window(driver.window_handles[0])
+            time.sleep(2)
+            driver.find_element(By.CSS_SELECTOR, '[alt="Click On The Button To Confirm Interaction!"]').click()
+        except Exception as a:
+            print(a)
+            failed_success_minutes()
+            check_driver_open()
+            no_Window_driver()
+def pinterest_save():
+    global driver
+    driver.get("https://www.like4like.org/earn-credits.php?feature=pinterestrep")
+
+    for s in range(5):
+        try:
+            
+            driver.maximize_window()
+            driver.implicitly_wait(15)
+            driver.find_element(By.CSS_SELECTOR, "a[class^='cursor earn_pages_button profile_view_img']").click()
+            driver.switch_to.window(driver.window_handles[1])
+            time.sleep(2)
+            driver.find_element(By.CSS_SELECTOR, '[data-test-id="quick-save-button"]').click()
+            time.sleep(5)
+            driver.close()
+            driver.switch_to.window(driver.window_handles[0])
+            time.sleep(2)
+            driver.find_element(By.CSS_SELECTOR, '[alt="Click On The Button To Confirm Interaction!"]').click()
+        except Exception as a:
+            print(a)
+            driver.get("https://www.like4like.org/earn-credits.php?feature=pinterestrep")
+            failed_success_minutes()
+            check_driver_open()
+            no_Window_driver()
+pinterest()
+pinterest_save()
+try:
+    driver.close()
+except:
+    pass
